@@ -41,7 +41,7 @@ class Graphic:
         plt.show()
 
     def plot_3(self, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, y1, y2, y3, y4, y5, y6, y7, y8,
-               label1, label2, label3, label4, label5, label6, label7, label8, label9):
+                label1, label2, label3, label4, label5, label6, label7, label8, label9):
         plt.figure(figsize=(15, 9))
         plt.plot(x1, y1, c="blue", label=label1)
         plt.plot(x2, y2, c="blue")

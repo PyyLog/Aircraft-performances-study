@@ -18,19 +18,19 @@ class GlideCurve:
         self.g = 9.81
         self.alpha = math.radians(30)
 
-    def get_Cx(self, speed):
-        Cz = (2 * self.mass * self.g) / (self.rho * self.wing_surface * (speed ** 2))
+    def get_Cx(self, velocity):
+        Cz = (2 * self.mass * self.g) / (self.rho * self.wing_surface * (velocity ** 2))
         Cx = 0.0125 + 0.05 * (Cz ** 2)
 
         return Cx
 
-    def get_thrust(self, speed):
-        F = 1 / 2 * (self.rho * self.wing_surface * (speed ** 2) * self.get_Cx(speed))
+    def get_thrust(self, velocity):
+        F = (1 / 2) * (self.rho * self.wing_surface * (velocity ** 2) * self.get_Cx(velocity))
 
         return F
 
-    def get_thrust_turn(self, speed):
-        F_turn = (1 / math.cos(self.alpha)) * self.get_thrust(speed)
+    def get_thrust_turn(self, velocity):
+        F_turn = (1 / math.cos(self.alpha)) * self.get_thrust(velocity)
 
         return F_turn
 
@@ -83,7 +83,7 @@ class FlightDomain:
         self.Vne = 269  # Vitesse à ne jamais dépasser (Vmax)
         self.Vfe = 191  # Vitesse maximale (volets sortis)
         self.Va = 213  # Vitesse de manoeuvre
-        self.Vc = 235  # Vitesse de croisière
+        self.Vc = 245  # Vitesse de croisière
         self.Vd = 294  # Vitesse de piqué
 
     def get_speed_fr(self, charge_factor):
@@ -106,16 +106,18 @@ class PolarCurve:
         self.g = 9.81
         self.rho = 0.4127
 
-    def get_Cz(self, speed):
-        Cz = (2 * self.mass * self.g) / (self.rho * self.wing_surface * (speed ** 2))
+    def get_Cz(self, velocity):
+        Cz = (2 * self.mass * self.g) / (self.rho * self.wing_surface * (velocity ** 2))
 
         return Cz
 
-    def get_Cx(self, speed):
-        Cx = 0.0125 + 0.05 * (self.get_Cz(speed) ** 2)
+    def get_Cx(self, Cz):
+        Cx = 0.0125 + 0.05 * (Cz ** 2)
 
         return Cx
 
+
+###
 
 class LiftCurve:
     def get_Cz(self, alpha):
