@@ -84,7 +84,7 @@ class FlightDomain:
         self.Vfe = 191  # Vitesse maximale (volets sortis)
         self.Va = 213  # Vitesse de manoeuvre
         self.Vc = 245  # Vitesse de croisière
-        self.Vd = 294  # Vitesse de piqué
+        self.Vd = 306  # Vitesse de piqué
 
     def get_speed_fr(self, charge_factor):
         V_fr = math.sqrt(charge_factor * (self.Vs ** 2))
@@ -96,6 +96,10 @@ class FlightDomain:
 
         return V_fe
 
+    def affine_equa(self, velocity):
+        y = (1 / 37) * velocity - (306 / 37)
+
+        return y
 
 ###
 
@@ -111,8 +115,8 @@ class PolarCurve:
 
         return Cz
 
-    def get_Cx(self, Cz):
-        Cx = 0.0125 + 0.05 * (Cz ** 2)
+    def get_Cx(self, velocity):
+        Cx = 0.0125 + 0.05 * (self.get_Cz(velocity) ** 2)
 
         return Cx
 
