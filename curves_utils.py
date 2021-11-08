@@ -110,13 +110,13 @@ class PolarCurve:
         self.g = 9.81
         self.rho = 0.4127
 
-    def get_Cz(self, velocity):
-        Cz = (2 * self.mass * self.g) / (self.rho * self.wing_surface * (velocity ** 2))
+    def get_Cz(self, alpha):
+        Cz = -0.016 + 0.11 * alpha
 
         return Cz
 
-    def get_Cx(self, velocity):
-        Cx = 0.0125 + 0.05 * (self.get_Cz(velocity) ** 2)
+    def get_Cx(self, alpha):
+        Cx = 0.0125 + 0.05 * (self.get_Cz(alpha) ** 2)
 
         return Cx
 

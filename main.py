@@ -113,9 +113,9 @@ def get_axis_4():
 def get_axis_5():
     Cz_list, Cx_list = [], []
 
-    for velocity in range(100, 400, 10):
-        Cz_list.append(polar_curve.get_Cz(velocity))
-        Cx_list.append(polar_curve.get_Cx(velocity))
+    for alpha in range(-10, 20):
+        Cz_list.append(polar_curve.get_Cz(alpha))
+        Cx_list.append(polar_curve.get_Cx(alpha))
 
     return Cx_list, Cz_list
 
@@ -124,7 +124,7 @@ def get_axis_5():
 def get_axis_6():
     alpha_list, Cz_list = [], []
 
-    for alpha in range(0, 20):
+    for alpha in range(-10, 20):
         Cz_list.append(lift_curve.get_Cz(alpha))
         alpha_list.append(alpha)
 
