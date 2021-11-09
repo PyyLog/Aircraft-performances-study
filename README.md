@@ -1,4 +1,5 @@
 # Aircraft-performances-study
+(School homework)
 
 The whole project consists in calculating performances for different flight phases:
 - Climbing
