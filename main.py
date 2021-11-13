@@ -50,6 +50,8 @@ def get_axis_3():
     temperature_list = [(288.15 - 0.0065 * alt) for alt in range(0, 18000, 1000)]
     Vmin_list = [flight_envelope.get_Vmin(rho) for rho in rho_list]
     Vmax_list = []
+    x_list_sustentation_ceiling = [i for i in range(0, 400, 10)]
+    sustentation_ceiling_list = [17115 for i in range(0, 40)]
 
     for temperature in temperature_list:
         Vmax_limit = flight_envelope.get_Vmax_limit(temperature)
@@ -59,7 +61,7 @@ def get_axis_3():
         else:
             Vmax_list.append(Vmax_limit)
 
-    return Vmin_list, Vmax_list, altitude_list
+    return x_list_sustentation_ceiling, Vmin_list, Vmax_list, sustentation_ceiling_list, altitude_list
 
 
 # Domaine de vol
@@ -146,8 +148,8 @@ chart_1_2.plot_1(get_axis_1_2()[2], get_axis_1_2()[3], get_axis_1_2()[6], get_ax
 
 chart_3 = Graphic(title="Enveloppe de vol de l'avion", xlabel="Vitesse V (en m/s)", ylabel="Altitude (en m)")
 
-chart_3.plot_2(get_axis_3()[0], get_axis_3()[1], get_axis_3()[2], label1="Vmin", label2="Vmax",
-               label3="Plafond de sustentation")
+chart_3.plot_2(get_axis_3()[0], get_axis_3()[1], get_axis_3()[2], get_axis_3()[3], get_axis_3()[4], label1="Vmin",
+               label2="Vmax", label3="Plafond de sustentation")
 
 ###
 

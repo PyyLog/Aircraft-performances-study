@@ -28,11 +28,11 @@ class Graphic:
         plt.grid()
         plt.show()
 
-    def plot_2(self, x1, x2, y1, label1, label2, label3):
+    def plot_2(self, x1, x2, x3, y1, y2, label1, label2, label3):
         plt.figure(figsize=(15, 9))
-        plt.plot([i for i in range(0, 400, 10)], [17115 for i in range(0, 40)], label=label3, c="green")
-        plt.plot(x1, y1, label=label1, c="blue")
-        plt.plot(x2, y1, label=label2, c="orange")
+        plt.plot(x1, y1, label=label3, c="green")
+        plt.plot(x2, y2, label=label1, c="blue")
+        plt.plot(x3, y2, label=label2, c="orange")
         plt.xlabel(self.xlabel)
         plt.ylabel(self.ylabel)
         plt.title(self.title)
