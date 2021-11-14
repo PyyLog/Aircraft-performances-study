@@ -8,14 +8,14 @@
 # Date       : 02 Nov 2021
 # -------------------------------------------------------------------------------
 import curves_utils
-from src.charts import *
+from src.charts_utils import *
 import numpy as np
 
 glide_curve = curves_utils.GlideCurve()
 flight_envelope = curves_utils.FlightEnvelope()
 flight_domain = curves_utils.FlightDomain()
 polar_curve = curves_utils.PolarCurve()
-lift_curve = curves_utils.LiftCurve()
+incidence_function_of_lift = curves_utils.IncidenceFunctionOfLift()
 
 
 # Courbes planeur
@@ -124,13 +124,13 @@ def get_axis_5():
 
 # Courbe de portance PROBLEME
 def get_axis_6():
-    alpha_list, Cl_list = [], []
+    Cl_list, alpha_list = [], []
 
     for alpha in range(-10, 20):
-        Cl_list.append(lift_curve.get_Cl(alpha))
         alpha_list.append(alpha)
+        Cl_list.append(incidence_function_of_lift.get_Cl(alpha))
 
-    return alpha_list, Cl_list
+    return Cl_list, alpha_list
 
 
 ###
@@ -139,21 +139,23 @@ def get_axis_6():
 chart_1_2 = Graphic(title="Courbe planeur de l'avion", xlabel="Vitesse V (en m/s)", ylabel="Poussée F (en N)")
 
 chart_1_2.plot_1(get_axis_1_2()[0], get_axis_1_2()[1], get_axis_1_2()[4], get_axis_1_2()[5],
-                 label1="courbe planeur vitesse de vol", label2="courbe planeur après vitesse maximale")
+                 label1="courbe planeur vitesse de vol", label2="courbe planeur après vitesse maximale",
+                 filename="glide_curve_1.png")
+
 chart_1_2.plot_1(get_axis_1_2()[2], get_axis_1_2()[3], get_axis_1_2()[6], get_axis_1_2()[7],
                  label1="courbe planeur en virage à 30° (vitesse de vol)",
-                 label2="courbe planeur en virage à 30° (après vitesse maximale)")
+                 label2="courbe planeur en virage à 30° (après vitesse maximale)", filename="glide_curve_2.png")
 
 ###
 
 chart_3 = Graphic(title="Enveloppe de vol de l'avion", xlabel="Vitesse V (en m/s)", ylabel="Altitude (en m)")
 
 chart_3.plot_2(get_axis_3()[0], get_axis_3()[1], get_axis_3()[2], get_axis_3()[3], get_axis_3()[4], label1="Vmin",
-               label2="Vmax", label3="Plafond de sustentation")
+               label2="Vmax", label3="Plafond de sustentation", filename="flight_envelope.png")
 
 ###
 
-chart_4 = Graphic(title="Domaine de vol de l'avion à 10 000 m", xlabel="Vitesse V (en m/s)",
+chart_4 = Graphic(title="Domaine de vol de l'avion", xlabel="Vitesse V (en m/s)",
                   ylabel="Facteur de charge n")
 
 chart_4.plot_3(get_axis_4()[0], get_axis_4()[1], get_axis_4()[2], get_axis_4()[3], get_axis_4()[4], get_axis_4()[20],
@@ -163,20 +165,22 @@ chart_4.plot_3(get_axis_4()[0], get_axis_4()[1], get_axis_4()[2], get_axis_4()[3
                get_axis_4()[18], get_axis_4()[19], get_axis_4()[5], get_axis_4()[21], get_axis_4()[22],
                get_axis_4()[23],
                label1="Domaine de vol volets rentrés", label2="Domaine de vol volets sortis", label3="Vs", label4="Vso",
-               label5="Vne", label6="Vfe", label7="Va", label8="Vc", label9="Vd")
+               label5="Vne", label6="Vfe", label7="Va", label8="Vc", label9="Vd", filename="flight_domain.png")
 
 ###
 
-chart_5 = Graphic(title="Polaire de l'avion à 10000 m", xlabel="Coefficient de trainée Cx",
+chart_5 = Graphic(title="Polaire de l'avion", xlabel="Coefficient de trainée Cx",
                   ylabel="Coefficient de portance Cz")
 
-chart_5.plot_4(get_axis_5()[0], get_axis_5()[1], label="Polaire de l'avion à 10000m d'altitude")
+chart_5.plot_4(get_axis_5()[0], get_axis_5()[1], label="Polaire de l'avion à 10000m d'altitude",
+               filename="polar_curve.png")
 
 ###
 
-chart_6 = Graphic(title="Courbe de portance de l'avion", xlabel="Incidence alpha (en °)",
-                  ylabel="Coefficient de portance Cz")
+chart_6 = Graphic(title="Incidence en fonction de la portance", xlabel="Coefficient de portance Cz",
+                  ylabel="Incidence alpha (en °)")
 
-chart_6.plot_4(get_axis_6()[0], get_axis_6()[1], label="Courbe de portance de l'avion")
+chart_6.plot_5(get_axis_6()[0], get_axis_6()[1], label="Courbe de portance de l'avion",
+               filename="incidence_function_of_lift.png")
 
 ###

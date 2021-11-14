@@ -87,12 +87,6 @@ class FlightDomain:
 ###
 
 class PolarCurve:
-    def __init__(self):
-        self.wing_surface = 363
-        self.mass = 212000
-        self.g = 9.81
-        self.rho = 0.4127
-
     def get_Cl(self, alpha):
         return -0.016 + 0.11 * alpha
 
@@ -102,6 +96,6 @@ class PolarCurve:
 
 ###
 
-class LiftCurve:
+class IncidenceFunctionOfLift:
     def get_Cl(self, alpha):
         return -0.016 + 0.11 * alpha
