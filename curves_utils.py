@@ -18,13 +18,13 @@ class GlideCurve:
         self.g = 9.81
         self.alpha = math.radians(30)
 
-    def get_Cx(self, velocity):
-        Cz = (2 * self.mass * self.g) / (self.rho * self.wing_surface * (velocity ** 2))
-        Cx = 0.0125 + 0.05 * (Cz ** 2)
-        return Cx
+    def get_Cd(self, velocity):
+        Cl = (2 * self.mass * self.g) / (self.rho * self.wing_surface * (velocity ** 2))
+        Cd = 0.0125 + 0.05 * (Cl ** 2)
+        return Cd
 
     def get_thrust(self, velocity):
-        return (1 / 2) * (self.rho * self.wing_surface * (velocity ** 2) * self.get_Cx(velocity))
+        return (1 / 2) * (self.rho * self.wing_surface * (velocity ** 2) * self.get_Cd(velocity))
 
     def get_thrust_turn(self, velocity):
         return (1 / math.cos(self.alpha)) * self.get_thrust(velocity)
@@ -38,28 +38,28 @@ class FlightEnvelope:
         self.mass = 212000
         self.g = 9.81
 
-    def get_Cz_Vmax(self, rho):
+    def get_Cl_Vmax(self, rho):
         F_max = ((rho / 1.225) ** 0.6) * 2 * 269562
-        Cz_Vmax = (1 / (2 * 0.05)) * ((F_max / (self.mass * self.g)) - math.sqrt(
+        Cl_Vmax = (1 / (2 * 0.05)) * ((F_max / (self.mass * self.g)) - math.sqrt(
             ((F_max / (self.mass * self.g)) ** 2) - (4 * 0.05 * 0.0125)))
-        return Cz_Vmax
+        return Cl_Vmax
 
     def get_Vmax(self, rho):
-        return math.sqrt((2 * self.mass * self.g) / (rho * self.wing_surface * self.get_Cz_Vmax(rho)))
+        return math.sqrt((2 * self.mass * self.g) / (rho * self.wing_surface * self.get_Cl_Vmax(rho)))
 
     def get_Vmax_limit(self, T):
         return 0.9 * 20.05 * math.sqrt(T)
 
-    def get_Czmax(self, rho):
+    def get_Clmax(self, rho):
         if rho == 1.225:
-            Czmax = 1.96
-            return Czmax
+            Clmax = 1.96
+            return Clmax
         else:
-            Czmax = 1.52
-            return Czmax
+            Clmax = 1.52
+            return Clmax
 
     def get_Vmin(self, rho):
-        return math.sqrt((2 * self.mass * self.g) / (rho * self.wing_surface * self.get_Czmax(rho)))
+        return math.sqrt((2 * self.mass * self.g) / (rho * self.wing_surface * self.get_Clmax(rho)))
 
 
 ###
@@ -93,15 +93,15 @@ class PolarCurve:
         self.g = 9.81
         self.rho = 0.4127
 
-    def get_Cz(self, alpha):
+    def get_Cl(self, alpha):
         return -0.016 + 0.11 * alpha
 
-    def get_Cx(self, alpha):
-        return 0.0125 + 0.05 * (self.get_Cz(alpha) ** 2)
+    def get_Cd(self, alpha):
+        return 0.0125 + 0.05 * (self.get_Cl(alpha) ** 2)
 
 
 ###
 
 class LiftCurve:
-    def get_Cz(self, alpha):
+    def get_Cl(self, alpha):
         return -0.016 + 0.11 * alpha

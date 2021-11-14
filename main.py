@@ -113,24 +113,24 @@ def get_axis_4():
 
 # Polaire de l'avion PROBLEME
 def get_axis_5():
-    Cz_list, Cx_list = [], []
+    Cl_list, Cd_list = [], []
 
     for alpha in range(-10, 20):
-        Cz_list.append(polar_curve.get_Cz(alpha))
-        Cx_list.append(polar_curve.get_Cx(alpha))
+        Cl_list.append(polar_curve.get_Cl(alpha))
+        Cd_list.append(polar_curve.get_Cd(alpha))
 
-    return Cx_list, Cz_list
+    return Cd_list, Cl_list
 
 
 # Courbe de portance PROBLEME
 def get_axis_6():
-    alpha_list, Cz_list = [], []
+    alpha_list, Cl_list = [], []
 
     for alpha in range(-10, 20):
-        Cz_list.append(lift_curve.get_Cz(alpha))
+        Cl_list.append(lift_curve.get_Cl(alpha))
         alpha_list.append(alpha)
 
-    return alpha_list, Cz_list
+    return alpha_list, Cl_list
 
 
 ###
