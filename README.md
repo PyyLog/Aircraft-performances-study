@@ -13,6 +13,6 @@ On this Git repository are present codes to build some curves like the:
 - Flight envelope
 - Flight domain
 - Polar curve
-- Lift curve
+- Incidence function of the lift
 
 -PK-
