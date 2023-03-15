@@ -1,10 +1,5 @@
 # ------------------------------------------------------------------------------
 # -*- coding: utf-8 -*-
-# Name       :
-# Purpose    :
-#
-# Author     : Pritam Charles Kantane
-# Class      : 3PF2
 # Date       : 02 Nov 2021
 # -------------------------------------------------------------------------------
 import curves_utils
@@ -18,7 +13,7 @@ polar_curve = curves_utils.PolarCurve()
 incidence_function_of_lift = curves_utils.IncidenceFunctionOfLift()
 
 
-# Courbes planeur
+# Glider curves
 def get_axis_1_2():
     velocity_list1, velocity_list2, F_list_as, F_list_os = [], [], [], []
     velocity_list3, velocity_list4, F_list_turn_as, F_list_turn_os = [], [], [], []
@@ -42,7 +37,7 @@ def get_axis_1_2():
     return velocity_list1, velocity_list2, velocity_list3, velocity_list4, F_list_as, F_list_os, F_list_turn_as, F_list_turn_os  # as : allowed speed / os : overspeed
 
 
-# Enveloppe de vol
+# Flight envelop
 def get_axis_3():
     altitude_list = [i for i in range(0, 18000, 1000)]
     rho_list = [1.225, 1.1116, 1.0065, 0.9091, 0.8191, 0.7361, 0.6597, 0.5895, 0.5252, 0.4663, 0.4127, 0.3639, 0.3108,
@@ -64,7 +59,7 @@ def get_axis_3():
     return x_list_sustentation_ceiling, Vmin_list, Vmax_list, sustentation_ceiling_list, altitude_list
 
 
-# Domaine de vol
+# Flight domain
 def get_axis_4():
     V_list_fr_1, V_list_fr_2, V_list_fr_3, V_list_fr_4, V_list_fr_5, V_list_fr_6, V_list_fe_1, V_list_fe_2 = [], [], [], [], [], [], [], []  # fr : flaps retracted ; fe : flaps extended
     n_list_fr_1, n_list_fr_2, n_list_fr_3, n_list_fr_4, n_list_fr_5, n_list_fr_6, n_list_fe_1, n_list_fe_2, n_list_kp = [], [], [], [], [], [], [], [], []

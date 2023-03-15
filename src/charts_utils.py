@@ -1,10 +1,5 @@
 # ------------------------------------------------------------------------------
 # -*- coding: utf-8 -*-
-# Name       :
-# Purpose    :
-#
-# Author     : Pritam Charles Kantane
-# Class      : 3PF2
 # Date       : 02 Nov 2021
 # -------------------------------------------------------------------------------
 from matplotlib import pyplot as plt
