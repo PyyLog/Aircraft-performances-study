@@ -28,10 +28,6 @@ On this Git repository are present codes to build some curves like the:
 
 * [Python](https://www.python.org)
 
-### Pre-requisities
-
-* [Jupyter](https://jupyter.org)
-
 ### Contributions
 
-* [PCK](https://github.com/PritamCharles) (Owner of the repository)
+* [PCK](https://github.com/PritamCharles) (Owner of the repository) 
