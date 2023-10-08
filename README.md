@@ -30,4 +30,4 @@ On this Git repository are present codes to build some curves like the:
 
 ### Contributions
 
-* [PCK](https://github.com/PritamCharles) (Owner of the repository) 
+* [Pritam Kantane](https://github.com/PyyLog) (Owner of the repository) 
